@@ -187,7 +187,7 @@ class _GooglePlaceAutoCompleteTextFieldState
     prediction.lat = placeDetails.result!.geometry!.location!.lat.toString();
     prediction.lng = placeDetails.result!.geometry!.location!.lng.toString();
 
-    widget.getPlaceDetailWithLatLng!(prediction);
+    widget.getPlaceDetailWithLatLng!(placeDetails);
 
 //    prediction.latLng = new LatLng(
 //        placeDetails.result.geometry.location.lat,
@@ -205,4 +205,4 @@ PlaceDetails parsePlaceDetailMap(Map responseBody) {
 
 typedef ItemClick = void Function(Prediction postalCodeResponse);
 typedef GetPlaceDetailswWithLatLng = void Function(
-    Prediction postalCodeResponse);
+    PlaceDetails placeDetails);
