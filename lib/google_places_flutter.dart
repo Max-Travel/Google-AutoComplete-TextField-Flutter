@@ -16,6 +16,7 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
   ItemClick? itmClick;
   GetPlaceDetailswWithLatLng? getPlaceDetailWithLatLng;
   bool isLatLngRequired = true;
+  Color? cursorColor;
 
   TextStyle textStyle;
   String googleAPIKey;
@@ -33,6 +34,7 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
       this.textStyle: const TextStyle(),
       this.countries,
       this.getPlaceDetailWithLatLng,
+        this.cursorColor,
       });
 
   @override
@@ -55,6 +57,7 @@ class _GooglePlaceAutoCompleteTextFieldState
     return CompositedTransformTarget(
       link: _layerLink,
       child: TextFormField(
+        cursorColor: widget.cursorColor,
         decoration: widget.inputDecoration,
         style: widget.textStyle,
         controller: widget.textEditingController,
