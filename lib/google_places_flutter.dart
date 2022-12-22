@@ -25,6 +25,7 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
   TextEditingController textEditingController = TextEditingController();
   String baseUrl;
   String authToken;
+  String? ipAddress;
 
   GooglePlaceAutoCompleteTextField(
       {required this.textEditingController,
@@ -39,6 +40,7 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
         this.cursorColor,
         required this.baseUrl,
         required this.authToken,
+        this.ipAddress
       });
 
   @override
@@ -73,6 +75,7 @@ class _GooglePlaceAutoCompleteTextFieldState
   getLocation(String text) async {
     Dio dio = new Dio();
     dio.options.headers['Authorization'] = 'Bearer ${widget.authToken}';
+    dio.options.headers['X-Forwarded-For'] = widget.ipAddress;
     String url = widget.baseUrl + "/maps/api/place/autocomplete/json?input=$text";
 
     if (widget.countries != null) {
@@ -184,6 +187,7 @@ class _GooglePlaceAutoCompleteTextFieldState
     //String key = GlobalConfiguration().getString('google_maps_key');
     Dio dio = Dio();
     dio.options.headers['Authorization'] = 'Bearer ${widget.authToken}';
+    dio.options.headers['X-Forwarded-For'] = widget.ipAddress;
 
     var url = widget.baseUrl + "/maps/api/place/details/json?placeid=${prediction.placeId}";
 
