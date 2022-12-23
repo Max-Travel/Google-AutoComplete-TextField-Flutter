@@ -26,6 +26,7 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
   String baseUrl;
   String authToken;
   String? ipAddress;
+  final Iterable<String>? autofillHints;
 
   GooglePlaceAutoCompleteTextField(
       {required this.textEditingController,
@@ -40,7 +41,8 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
         this.cursorColor,
         required this.baseUrl,
         required this.authToken,
-        this.ipAddress
+        this.ipAddress,
+        this.autofillHints,
       });
 
   @override
@@ -63,6 +65,7 @@ class _GooglePlaceAutoCompleteTextFieldState
     return CompositedTransformTarget(
       link: _layerLink,
       child: TextFormField(
+        autofillHints: widget.autofillHints,
         cursorColor: widget.cursorColor,
         decoration: widget.inputDecoration,
         style: widget.textStyle,
